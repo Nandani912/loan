@@ -1,0 +1,36 @@
+<%= render partial:"partial/header"%>
+<h1>Your Loans</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Loan Id</th>
+      <th>Loan Amount</th>
+      <th>Loan Rate</th>
+      <th>Loan State</th>
+    </tr>
+  </thead>
+  <tbody>
+ 
+    <% @lendings.each do |lending| %>
+
+      <tr>
+        <td><%= lending.id %></td>
+        <td><%= lending.amount %></td>
+        <td><%= lending.interest_rate %>%</td>
+        <td><%= lending.state %></td>
+      <% if lending.state == "approved" %>
+      <td>  <%= button_to "Confirm", lending_path(lending, state: "confirm"), method: :patch, class: "btn btn-success" %>
+        <%= button_to "Reject", lending_path(lending, state: "reject"), method: :patch, class: "btn btn-danger" %>
+      <% end %> 
+          <% if lending.state == "open" %>
+      <td>  <%= button_to "Pay Now", lending_path(lending, state: "pay"), method: :patch, class: "btn btn-success" %>
+      <% end %> 
+      </td> 
+      </tr>
+    <%  end %>
+
+
+  </tbody>
+</table>
+
+<%= button_to "New Loan Apply", new_lending_path, method: :get, class: "btn-new-loan" %>

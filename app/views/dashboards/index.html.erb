@@ -1,0 +1,13 @@
+<%= render partial: "partial/header" %>
+#<%button_to 'Know More'%>
+
+<% if user_signed_in?%> 
+ <h1> Customer Dashboard<h1>
+ <%= button_to 'Apply for loan', new_lending_path, method: :get, class:"btn-logout"%>
+  <%= button_to 'View all loan', lendings_path, method: :get, class:"btn-logout"%>
+  <%else%>
+  <p>welcome to <h1>lending money app</h1><p>
+  <p>Your Financial Bridge to Instant Solutions!</p>
+  <p>apply easy loans and manage your interest rate </p>
+ <%end%>
+
